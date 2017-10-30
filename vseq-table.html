@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="css/select.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="css/buttons.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="css/mark.min.css">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-glyphicons.css">
 
 <style type="text/css" class="init">
     .nav {
@@ -29,12 +29,16 @@
     }
     .container {
         margin-bottom: 30px;
+        width: 1300px;
     }
     .container section h1 {
         margin-bottom: 10px;
     }
     .container .main-desc {
         font-size: 16px;
+    }
+    address {
+        font-size: small;
     }
     table.dataTable {
         table-layout: fixed;
@@ -145,6 +149,7 @@ function createDataTable(i, dname, dfile) {
             '<tr>'+
             '<th class="select-checkbox"></th>'+
             '<th>Raw <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+  
+            '<th>Scan <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+  
             '<th>Modification <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
             '<th>Residue <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
             '<th>Protein <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
@@ -156,6 +161,7 @@ function createDataTable(i, dname, dfile) {
             '<tr>'+
             '<th></th>'+
             '<th>Raw</th>'+
+            '<th>Scan</th>'+
             '<th>Modification</th>'+
             '<th>Residue</th>'+
             '<th>Protein</th>'+
@@ -174,16 +180,17 @@ function createDataTable(i, dname, dfile) {
         columns: [
             { data: null, width: "1px" },            // checkbox
             { data: "raw", width: "140px" },         // raw
+            { data: "scan", width: "60px"}, // scan
             { data: "modification", width: "110px"}, // modfication
-            { data: "residue", width: "100px"},      // residue
-            { data: "protein", width: "200px"},      // protein description
+            { data: "residue", width: "80px"},      // residue
+            { data: "protein", width: "210px"},      // protein description
             // { data: function ( row, type, val, meta ) {
             //     var p = row.protein;
             //     var r = /^\>[^\s]*\s*/; p = p.replace(r,'');
             //     var r = /\s*PE=[^\s]*\s*SV=\d*\s*/; p = p.replace(r,'');
             //     return p;
             //     }, width: "200px" },
-            { data: "peptide" },                         // peptide
+            { data: "pepmass" },                         // peptide with mass and modification
             { data: function ( row, type, val, meta ) {  // vseq img
                 var path = row.vseq.path;
                 var img = row.vseq.imgfile;
@@ -370,9 +377,15 @@ function createDataTable(i, dname, dfile) {
 <body>
 	<div class="container">
 		<section>
-            <h1>Vseq DataTables</h1>
+            <h1>Modified Peptidome</h1>
             <div class="main-desc">
-                <p>General description of Vseq<p>
+                <p>For more information about the Quality control plots (Vseq), read the following reference:<p>
+                <address>
+                    <strong>Mechanism of super-assembly of respiratory complexes III and IV.</strong><br>
+                    Cogliati S, Calvo E, Loureiro M, Guaras AM, Nieto-Arellano R, Garcia-Poyatos C, Ezkurdia I, Mercader N, Vázquez J, Enriquez JA.<br>
+                    Nature. 2016 Nov 24;539(7630):579-582.<br>
+                    DOI:<a href="http://dx.doi.org/10.1038/nature20157" target="_blank">10.1038/nature20157</a>
+                </address>
             </div>
             <hr/>
             <div>
