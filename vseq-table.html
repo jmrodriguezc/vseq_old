@@ -148,13 +148,20 @@ function createDataTable(i, dname, dfile) {
     '<thead>'+
             '<tr>'+
             '<th class="select-checkbox"></th>'+
-            '<th>Raw <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+  
-            '<th>Scan <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+  
-            '<th>Modification <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
-            '<th>Residue <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
-            '<th>Protein <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
-            '<th>Peptide <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
-            '<th>Vseq img <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
+            // '<th>Raw <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+  
+            // '<th>Scan <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+  
+            // '<th>Modification <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
+            // '<th>Residue <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
+            // '<th>Protein <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
+            // '<th>Peptide <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
+            // '<th>Vseq img <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
+            '<th>Raw</th>'+  
+            '<th>Scan</th>'+  
+            '<th>Modification</th>'+
+            '<th>Residue</th>'+
+            '<th>Protein</th>'+
+            '<th>Peptide</th>'+
+            '<th>Vseq img</th>'+
             '</tr>'+
             '</thead>'+
             '<tfoot>'+
@@ -179,7 +186,7 @@ function createDataTable(i, dname, dfile) {
         mark: true,
         columns: [
             { data: null, width: "1px" },            // checkbox
-            { data: "raw", width: "140px" },         // raw
+            { data: "raw", width: "150px" },         // raw
             { data: "scan", width: "60px"}, // scan
             { data: "modification", width: "110px"}, // modfication
             { data: "residue", width: "80px"},      // residue
@@ -192,9 +199,11 @@ function createDataTable(i, dname, dfile) {
             //     }, width: "200px" },
             { data: "pepmass" },                         // peptide with mass and modification
             { data: function ( row, type, val, meta ) {  // vseq img
-                var path = row.vseq.path;
-                var img = row.vseq.imgfile;
-                var href = globalURLdata + '/' + path + '/' + img;
+                // var path = row.vseq.path;
+                // var img = row.vseq.imgfile;
+                // var href = globalURLdata + '/' + path + '/' + img;
+                var img = row.vsfile;
+                var href = globalURLdata + '/' + + img;
                 return '<button class="vseqimg" data-vseq-hrefimg="'+href+'">Click!</button>';
                 }, width: "85px" }
         ],
@@ -341,14 +350,16 @@ function createDataTable(i, dname, dfile) {
     // click on button to show vseq image
     table.on('click', 'tbody tr td button.vseqimg', function () {
         var data = table.row( $(this).parents('tr') ).data();
-        var u = 'data/'+data.vseq.path+'/'+data.vseq.imgfile;
+        // var u = 'data/'+data.vseq.path+'/'+data.vseq.imgfile;
+        var u = data.vsfile
         var mymodal = $('#myModal');
         mymodal.find('.modal-body img.imagepreview').attr('src', u);
         mymodal.modal('show');
     } );
     table.on('click', 'tbody tr td button.vseqimg', function () {
         var data = table.row( $(this).parents('tr') ).data();
-        var u = 'data/'+data.vseq.path+'/'+data.vseq.imgfile;
+        // var u = 'data/'+data.vseq.path+'/'+data.vseq.imgfile;
+        var u = data.vsfile
         var mymodal = $('#myModal');
         mymodal.find('.modal-body img.imagepreview').attr('src', u);
         mymodal.modal('show');

@@ -6,5 +6,9 @@
  {
   "name": "Liver",
   "data": "vseq-liver.json"
+ },
+ {
+  "name": "Muscle",
+  "data": "vseq-muscle.json"
  }
 ]

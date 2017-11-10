@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.6
+#!/usr/bin/env python
 import argparse, logging, os
 import json, re
 import subprocess
@@ -7,7 +7,7 @@ from pprint import pprint
 __author__ = 'jmrodriguezc'
 
 datapath = None
-minusdeltafile = 'minDeltaScans.txt'
+notmatchedfname = 'not_matched_peptides.txt'
 
 def extract_vseq_main_data(datapath):
     ''' Extract the main data of vseq for all tissue'''    
@@ -27,141 +27,97 @@ def extract_vseq_main_data(datapath):
                     out[tissue] = [trep]
     return out
 
-def extract_sticker_data(stfiles):
-    '''Extract the complement information from the sticker output files'''
-    stick = {}
-    # p1 = subprocess.Popen(["cut", "-f", "1,16,26,36,50", args.stfils[1]], stdout=subprocess.PIPE)
-    # p2 = subprocess.Popen(["grep", "-e", "RH_Liver_TMTHF_FR1\|RH_Liver_TMTHF_FR2"], stdin=p1.stdout,stdout=subprocess.PIPE)
-    # p1.stdout.close()
-    # for line in p2.stdout:
-    #     print(line.decode('utf-8').split("\t"))
-    for stfile in stfiles:
-        stfname = os.path.basename(stfile)
-        tissue = re.match('^([^\_]*)\_', stfname).group(1).lower()
-        stick[tissue] = {
-            'file': stfile,
-            'data': {}
-        }
-        with open(stfile, 'r') as outfile:
-            for line in outfile:
-                line = re.sub(r"\n*$", "", line)
-                cols = line.split("\t")
-                scn = cols[0]
-                raw = cols[1]
-                cxr = cols[2]
-                res = cols[3]
-                prog = re.compile('^(RH\_[^\_]*\_TMTHF\_FR[0-9]{1})')
-                if prog.match(raw):
-                    r = prog.match(raw).group(1)
-                    stkey = r + '_' + scn
-                    stick[tissue]['data'][stkey] = {
-                        'scn': scn,
-                        'raw': raw,
-                        'cxr': cxr,
-                        'res': res
-                    }
-
-    return stick
-
-def extract_suppl_data(spfiles):
-    '''Extract the complement information from supplementary files'''
-    suppl = {}
-    for spfile in spfiles:
-        stfname = os.path.basename(spfile)
-        tissue = re.match('^Supplementary\_Table\_([^\_]*)\_', stfname).group(1).lower()
-        suppl[tissue] = {
-            'file': spfile,
-            'data': {}
-        }
-        with open(spfile, 'r') as outfile:
-            for line in outfile:
-                line = re.sub(r"\n*$", "", line)
-                cols = line.split("\t")
-                dsc = cols[0]
-                res = cols[1]
-                cxr = cols[2]
-                mod = cols[3]
-                dsc = re.sub(r"\"*", "", dsc)
-                suppl[tissue]['data'][res] = {
-                    'res': res,
-                    'dsc': dsc,
+def extract_relpep_data(stfile):
+    '''Extract information from the relationship file'''
+    dat = {}
+    with open(stfile, 'r') as outfile:
+        for line in outfile:
+            line = re.sub(r"\n*$", "", line)
+            cols = line.split("\t")
+            met = cols[0]
+            tis = cols[1]
+            seq = cols[2]
+            cxr = cols[3]
+            raw = cols[4]
+            scn = cols[5]
+            mod = cols[6]
+            dsc = cols[7]
+            if not tis in dat:
+                dat[tis] = {}
+            prog = re.compile('^(RH\_[^\_]*\_TMTHF\_FR[0-9]{1})')
+            if prog.match(raw):
+                r = prog.match(raw).group(1)
+                stkey = r + '_' + scn
+                dat[tis][stkey] = {
+                    'seq': seq,
                     'cxr': cxr,
-                    'mod': mod
+                    'raw': raw,
+                    'scn': scn,
+                    'mod': mod,
+                    'dsc': dsc
                 }
 
-    return suppl
+    return dat
 
-def extract_vseq_data(tissue, tpaths, dstick, dsuppl, vseq):
+def extract_vseq_data(tissue, drelpep, tpaths, vseq):
     ''' Extract the vseq data for a given tissue '''
     global datapath
     vseqt = {
         'data':[]
     }
     vfilter = {}
-    for tpath in tpaths:
-        vpath = tpath['path']
-        for vf in os.listdir(vpath):
-            prog = re.compile('^([^\_]*)\_([^\.]*)\.png$')
-            if prog.match(vf):
-                vpep = prog.match(vf).group(1)
-                vscn = prog.match(vf).group(2)                
-                vraw = tpath['raw']
-                                
-                # the first key for the "sticker" data (RH_Heart_TMTHF_FR1_100000)
-                vkey = vraw + '_' + vscn
-                if vkey in dstick['data']:
-                    # the second key for the "suppl" data (AAVSGI[15.994856]WGK)
-                    vkey2 = dstick['data'][vkey]['res']
-                    if vkey2 in dsuppl['data']:
-                        vpms = dsuppl['data'][vkey2]['res']
-                        vmod = dsuppl['data'][vkey2]['mod']
-                        prog2 = re.compile('^([a-zA-Z]+)_([^\$]*)')
-                        if prog2.match(vmod):
-                            vres = prog2.match(vmod).group(1)
-                            vmod = prog2.match(vmod).group(2)
-                        else:
-                            vmod = dsuppl['data'][vkey2]['mod']
-                            vres = '-'
-                        vcxr = dstick['data'][vkey]['cxr']
-                        vdsc = dsuppl['data'][vkey2]['dsc']
-                        vprt = vdsc
-                        p = re.match('^\>(sp|tr)\|([^\|]*)\|',vdsc).group(2)
-                        vprt = re.sub(r"^\>[^\s]*\s*", "", vprt)
-                        vprt = re.sub(r"\s*PE=\d*\s*SV=\d*\s*", "", vprt)
-                        vprt += ' ('+p+')'                    
-                        vrep = {
-                            'raw':          vraw,
-                            'scan':         vscn,
-                            'modification': vmod,
-                            'residue':      vres,
-                            'protein':      vprt,
-                            'pdesc':        vdsc,
-                            'pepmass':      vpms,
-                            'peptide':      vpep,
-                            'cxcorr':       vcxr,
-                            'vseq': {
-                                'path':    vraw,
-                                'imgfile': vf
-                            }
-                        }
-                        # vseqt['data'].append(vrep) # save all
-                        # filter vseq data with the best cxcorr for each "FinalSeq_Mass"
-                        if vpms in vfilter:
-                            vr = vfilter[vpms]
-                            if vcxr > vr['cxcorr']:
-                                vfilter[vpms] = vrep    
-                        else:
-                            vfilter[vpms] = vrep
 
-                        # write minus detal file
-                        if re.match('\w*(\w{1})\[\-\d*\.\d*\]',dsuppl['data'][vkey2]['res']):
-                            t = vraw + '\t' + vscn + '\t' + dsuppl['data'][vkey2]['res'] + '\t' + dsuppl['data'][vkey2]['mod'] + '\n'
-                            outmdeltafile  = datapath + '/' + minusdeltafile
-                            with open(outmdeltafile, 'a') as outfile:
-                                outfile.writelines(t)
+    low = lambda s: s[:1].lower() + s[1:] if s else ''
+    callback = lambda pat: pat.group(1).lower()    
+    for stkey in drelpep:
+        dpep = drelpep[stkey]
+        seq = dpep['seq']
+        raw = dpep['raw']
+        scn = dpep['scn']
+        cxr = dpep['cxr']
+        mod = dpep['mod']
+        dsc = dpep['dsc']
+        # change pepetide sequence:            
+        pep = re.sub(r"\[[^\]]*\]", "", seq)
+        pep = low(pep) # first char in lowercase
+        pep = re.sub(r'([K])', callback, pep) # all K -> k
+        res = '-'
+        prog2 = re.compile('^([a-zA-Z]+)_([^\$]*)')
+        if prog2.match(mod):
+            res = prog2.match(mod).group(1)
+            mod = prog2.match(mod).group(2)
+        prt = dsc
+        p = re.match('^\>(sp|tr)\|([^\|]*)\|',dsc).group(2)
+        prt = re.sub(r"^\>[^\s]*\s*", "", prt)
+        prt = re.sub(r"\s*PE=\d*\s*SV=\d*\s*", "", prt)
+        prt += ' ('+p+')'                    
 
-                else:
-                    logging.debug("NOT_MATCH_VSEQ: "+vkey+" : "+vpath+"/"+vf)
+        vsid = raw+'/'+pep+'_'+scn
+        vsfile = datapath+'/'+vsid+'.png'
+        if os.path.isfile(vsfile):
+            vrep = {
+                'raw':          raw,
+                'scan':         scn,
+                'modification': mod,
+                'residue':      res,
+                'protein':      prt,
+                'pdesc':        dsc,
+                'pepmass':      seq,
+                'peptide':      pep,
+                'cxcorr':       cxr,
+                'vsfile':       vsfile
+            }
+            vseqt['data'].append(vrep) # save all
+            if seq in vfilter:
+                if cxr > vfilter[seq]['cxcorr']:
+                    vfilter[seq] = vrep    
+            else:
+                vfilter[seq] = vrep
+        else:
+            t = vsfile + "\t" + raw + "\t" + pep + "\t" + scn + "\t" + seq + "\n"
+            nfile  = datapath + '/' + notmatchedfname
+            with open(nfile, 'a') as outfile:
+                outfile.writelines(t)
 
     tfname = 'vseq-'+tissue.lower()+'.json'
     tfile = datapath+'/'+'vseq-'+tissue.lower()+'.json'
@@ -183,26 +139,19 @@ def main(args):
     global datapath
 
     logging.info('extract the main data of vseq for all tissues')
-    # datapath = os.getcwd()+'/'+args.indir
     datapath = args.indir
     logging.debug(datapath)
     dpaths = extract_vseq_main_data(datapath)
     logging.debug(dpaths)
     
-    logging.info('extract complement info from the sticker outputs')
-    dstick = extract_sticker_data(args.stfils)
-    # logging.debug(pprint(dstick))
-    # logging.debug(dstick)
-
-    logging.info('extract complement info from supplementary files')
-    dsuppl = extract_suppl_data(args.spfils)
-    # logging.debug(pprint(dsuppl))
-    # logging.debug(dsuppl)
+    logging.info('filter file from the supplementary material')
+    drelpep = extract_relpep_data(args.ffile)
+    logging.debug(drelpep)
 
     logging.info('create vseq data for each tissues')
     outvseq = []
     for tissue,tpaths in dpaths.items():
-        extract_vseq_data(tissue,tpaths, dstick[tissue], dsuppl[tissue], outvseq)
+        extract_vseq_data(tissue, drelpep[tissue], tpaths, outvseq)
 
     logging.info('create file of vseq data for all tissues')
     outvseqfile  = datapath+'/vseq.json'
@@ -218,9 +167,8 @@ if __name__ == "__main__":
         Example:
             create_vseq_data.py -i data -x data/heart_isotopWithQuant_stickerOUT.impCols.txt data/liver_isotopWithQuant_stickerOUT.data.impCols.txt
         ''')
-    parser.add_argument('-i',  '--indir', required=True, help='Directory with Vseq images whose directories are organize')
-    parser.add_argument('-x',  '--stfils', required=True, nargs='+', help='List of files with the sticker results')
-    parser.add_argument('-x2', '--spfils', required=True, nargs='+', help='List of supplement files with the "cXcorr" and "Final-PTM-labels"')
+    parser.add_argument('-i',  '--indir',  required=True, help='Directory with Vseq images whose directories are organize')
+    parser.add_argument('-f',  '--ffile', required=True, help='List of files with the relationshiops between Basal and Changes peptides')
     parser.add_argument('-v', dest='verbose', action='store_true', help="Increase output verbosity")
     args = parser.parse_args()
 
