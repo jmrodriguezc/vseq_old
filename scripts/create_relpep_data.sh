@@ -19,17 +19,21 @@ echo "finished"
 echo "Extract the columns for CHANGES-PTM files..."
 # - FastaProteinDescription
 # - Sequence (FinalSeq_Mass)
+# - compl/control
+# - p-value (Comp vs Cont)
+# - heteropl/control
+# - p-value (Heterop vs Cont)
 # - Assigned Modification (Final-PTM-labels)
 # - Tissue
 cd ${DATA_DIR} &&
-cut -f 1,2,22,23 Supplementary_Table_2_Changes.txt | sed 's/\"//g' > Supplementary_Table_2_Changes.impCols.txt
+cut -f 1,2,17,18,19,20,22,23 Supplementary_Table_2_Changes.txt | sed 's/\"//g' > Supplementary_Table_2_Changes.impCols.txt
 echo "finished"
 
 echo "Create the relationship of Basal and Changes peptides..."
 cd ${WS_DIR} && ./scripts/create_relpep_data.py \
     -ib data/Supplementary_Table_1_basalPeptidomes.impCols.txt \
     -ic data/Supplementary_Table_2_Changes.impCols.txt \
-    -o  data/rel_peptides.tsv
+    -o  data/peptide_changes.tsv
 echo "finished"
 
 read -n 1 -s -r -p "Press any key to continue"

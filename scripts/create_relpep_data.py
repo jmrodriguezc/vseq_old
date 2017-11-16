@@ -47,7 +47,7 @@ def extract_basal_data(stfile):
 def extract_changes_data(spfile):
     '''Extract the information of PTM CHANGES'''
     dat = {}
-    # FastaProteinDescription Sequence        Assigned Modification   tissue
+    # FastaProteinDescription, Sequence, compl/control, p-value (Comp vs Cont), heteropl/control, p-value (Heterop vs Cont), Assigned Modification, tissue
     with open(spfile, 'r') as outfile:
         next(outfile) # jump first line
         for line in outfile:
@@ -55,21 +55,27 @@ def extract_changes_data(spfile):
             cols = line.split("\t")
             dsc = cols[0]
             seq = cols[1]
-            mod = cols[2]
-            tis = cols[3].lower()
+            zco = cols[2]
+            pco = cols[3]
+            zhe = cols[4]
+            phe = cols[5]
+            mod = cols[6]
+            tis = cols[7].lower()
             dsc = re.sub(r"\"*", "", dsc)
+            r = {
+                'dsc': dsc,
+                'zco': zco,
+                'pco': pco,
+                'zhe': zhe,
+                'phe': phe,
+                'mod': mod
+            }
             if not tis in dat:
                 dat[tis] = {}
             if not seq in dat[tis]:
-                dat[tis][seq] = [{
-                    'dsc': dsc,
-                    'mod': mod
-                }]
+                dat[tis][seq] = [r]
             else:
-                dat[tis][seq].append({
-                    'dsc': dsc,
-                    'mod': mod
-                })
+                dat[tis][seq].append(r)
     return dat
 
 def create_relpep_data(dbasals, dchanges):
@@ -95,7 +101,7 @@ def create_relpep_data(dbasals, dchanges):
                             d = db
                         if db['cxr'] > d['cxr']:
                             d = db
-                    changes_info = dc['mod']+"\t"+dc['dsc']
+                    changes_info = dc['zco']+"\t"+dc['pco']+"\t"+dc['zhe']+"\t"+dc['phe']+"\t"+dc['mod']+"\t"+dc['dsc']
                     if len(d) == 0:
                         meta_info += '_NO_BASAL_SC'
                         basal_info = 'NA'+"\t"+'NA'

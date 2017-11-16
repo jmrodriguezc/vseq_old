@@ -7,7 +7,7 @@ from pprint import pprint
 __author__ = 'jmrodriguezc'
 
 datapath = None
-notmatchedfname = 'not_matched_peptides.txt'
+notmatchedfname = 'peptide_changes.not_matched.txt'
 
 def extract_vseq_main_data(datapath):
     ''' Extract the main data of vseq for all tissue'''    
@@ -40,8 +40,12 @@ def extract_relpep_data(stfile):
             cxr = cols[3]
             raw = cols[4]
             scn = cols[5]
-            mod = cols[6]
-            dsc = cols[7]
+            zco = cols[6]
+            pco = cols[7]
+            zhe = cols[8]
+            phe = cols[9]
+            mod = cols[10]
+            dsc = cols[11]
             if not tis in dat:
                 dat[tis] = {}
             prog = re.compile('^(RH\_[^\_]*\_TMTHF\_FR[0-9]{1})')
@@ -53,6 +57,10 @@ def extract_relpep_data(stfile):
                     'cxr': cxr,
                     'raw': raw,
                     'scn': scn,
+                    'zco': zco,
+                    'pco': pco,
+                    'zhe': zhe,
+                    'phe': phe,
                     'mod': mod,
                     'dsc': dsc
                 }
@@ -75,6 +83,10 @@ def extract_vseq_data(tissue, drelpep, tpaths, vseq):
         raw = dpep['raw']
         scn = dpep['scn']
         cxr = dpep['cxr']
+        zco = dpep['zco']
+        pco = dpep['pco']
+        zhe = dpep['zhe']
+        phe = dpep['phe']
         mod = dpep['mod']
         dsc = dpep['dsc']
         # change pepetide sequence:            
@@ -90,34 +102,43 @@ def extract_vseq_data(tissue, drelpep, tpaths, vseq):
         p = re.match('^\>(sp|tr)\|([^\|]*)\|',dsc).group(2)
         prt = re.sub(r"^\>[^\s]*\s*", "", prt)
         prt = re.sub(r"\s*PE=\d*\s*SV=\d*\s*", "", prt)
-        prt += ' ('+p+')'                    
-
-        vsid = raw+'/'+pep+'_'+scn
-        vsfile = datapath+'/'+vsid+'.png'
-        if os.path.isfile(vsfile):
-            vrep = {
-                'raw':          raw,
-                'scan':         scn,
-                'modification': mod,
-                'residue':      res,
-                'protein':      prt,
-                'pdesc':        dsc,
-                'pepmass':      seq,
-                'peptide':      pep,
-                'cxcorr':       cxr,
-                'vsfile':       vsfile
-            }
-            vseqt['data'].append(vrep) # save all
-            if seq in vfilter:
-                if cxr > vfilter[seq]['cxcorr']:
-                    vfilter[seq] = vrep    
+        prt += ' ('+p+')'
+        
+        # apply filters:
+        #   get only the modifiers
+        #   the changes have grown
+        if (res != '-') and ( (float(zco) > 0 and float(pco) < 0.05) or (float(zhe) > 0 and float(phe) < 0.05) ) : 
+            # check if Vseq images exists
+            vsid = raw+'/'+pep+'_'+scn
+            vsfile = datapath+'/'+vsid+'.png'
+            if os.path.isfile(vsfile):
+                vrep = {
+                    'raw':          raw,
+                    'scan':         scn,
+                    'modification': mod,
+                    'residue':      res,
+                    'protein':      prt,
+                    'pdesc':        dsc,
+                    'pepmass':      seq,
+                    'peptide':      pep,
+                    'cxcorr':       cxr,
+                    'z-compl':      zco,
+                    'p-compl':      pco,
+                    'z-heter':      zhe,
+                    'p-heter':      phe,                   
+                    'vsfile':       vsfile
+                }
+                vseqt['data'].append(vrep)
+                if seq in vfilter:
+                    if cxr > vfilter[seq]['cxcorr']: # get with the biggest 'cxcorr'
+                        vfilter[seq] = vrep    
+                else:
+                    vfilter[seq] = vrep
             else:
-                vfilter[seq] = vrep
-        else:
-            t = vsfile + "\t" + raw + "\t" + pep + "\t" + scn + "\t" + seq + "\n"
-            nfile  = datapath + '/' + notmatchedfname
-            with open(nfile, 'a') as outfile:
-                outfile.writelines(t)
+                t = vsfile + "\t" + raw + "\t" + pep + "\t" + scn + "\t" + seq + "\t" + zco + "\t" + pco + "\t" + zhe + "\t" + phe + "\n"
+                nfile  = datapath + '/' + notmatchedfname
+                with open(nfile, 'a') as outfile:
+                    outfile.writelines(t)
 
     tfname = 'vseq-'+tissue.lower()+'.json'
     tfile = datapath+'/'+'vseq-'+tissue.lower()+'.json'
@@ -125,10 +146,6 @@ def extract_vseq_data(tissue, drelpep, tpaths, vseq):
         'name': tissue.title(),
         'data': tfname
     })
-
-    # create vseq report with the ppetides with the best cxcorr
-    for vk2,vrep in vfilter.items():
-        vseqt['data'].append(vrep)
 
     with open(tfile, 'w') as outfile:
         json.dump(vseqt, outfile, indent=1)
@@ -165,7 +182,7 @@ if __name__ == "__main__":
         description='Create the Vseq data files into the input directory for the use in the website',
         epilog='''
         Example:
-            create_vseq_data.py -i data -x data/heart_isotopWithQuant_stickerOUT.impCols.txt data/liver_isotopWithQuant_stickerOUT.data.impCols.txt
+            create_vseq_data.py -i data -f data/peptide_changes.matched.tsv
         ''')
     parser.add_argument('-i',  '--indir',  required=True, help='Directory with Vseq images whose directories are organize')
     parser.add_argument('-f',  '--ffile', required=True, help='List of files with the relationshiops between Basal and Changes peptides')

@@ -737,6 +737,22 @@
    "vsfile": "data/RH_Liver_TMTHF_FR5/dIINMDk_33531.png"
   },
   {
+   "raw": "RH_Liver_TMTHF_FR2",
+   "scan": "11513",
+   "modification": "Deamidated",
+   "residue": "Q",
+   "protein": "Prohibitin-2 OS=Mus musculus GN=Phb2 (O35129)",
+   "pdesc": ">sp|O35129|PHB2_MOUSE Prohibitin-2 OS=Mus musculus GN=Phb2 PE=1 SV=1",
+   "pepmass": "QVAQQEAQ[0.983771]R",
+   "peptide": "qVAQQEAQR",
+   "cxcorr": "0.311939867",
+   "z-compl": "3.458",
+   "p-compl": "0.046398186",
+   "z-heter": "4.873",
+   "p-heter": "0.005774013",
+   "vsfile": "data/RH_Liver_TMTHF_FR2/qVAQQEAQR_11513.png"
+  },
+  {
    "raw": "RH_Liver_TMTHF_FR4",
    "scan": "25049",
    "modification": "Oxidation",
@@ -847,6 +863,22 @@
    "z-heter": "4.662",
    "p-heter": "0.043794733",
    "vsfile": "data/RH_Liver_TMTHF_FR5/yHTVNGHNCEVR_13350.png"
+  },
+  {
+   "raw": "RH_Liver_TMTHF_FR5",
+   "scan": "23064",
+   "modification": "Methyl",
+   "residue": "D",
+   "protein": "UDP-glucuronosyltransferase OS=Mus musculus GN=Ugt2b1 (Q8R084)",
+   "pdesc": ">tr|Q8R084|Q8R084_MOUSE UDP-glucuronosyltransferase OS=Mus musculus GN=Ugt2b1 PE=1 SV=1",
+   "pepmass": "KPD[14.014573]TIGSNTR",
+   "peptide": "kPDTIGSNTR",
+   "cxcorr": "0.233775373",
+   "z-compl": "3.173",
+   "p-compl": "0.123041958",
+   "z-heter": "4.621",
+   "p-heter": "0.002546223",
+   "vsfile": "data/RH_Liver_TMTHF_FR5/kPDTIGSNTR_23064.png"
   },
   {
    "raw": "RH_Liver_TMTHF_FR6",
@@ -1169,6 +1201,22 @@
    "vsfile": "data/RH_Liver_TMTHF_FR5/tPATIGHNTR_14296.png"
   },
   {
+   "raw": "RH_Liver_TMTHF_FR3",
+   "scan": "15951",
+   "modification": "Oxidation",
+   "residue": "M",
+   "protein": "Myosin-9 OS=Mus musculus GN=Myh9 (Q8VDD5)",
+   "pdesc": ">sp|Q8VDD5|MYH9_MOUSE Myosin-9 OS=Mus musculus GN=Myh9 PE=1 SV=4",
+   "pepmass": "EM[15.994856]EAEIEDER",
+   "peptide": "eMEAEIEDER",
+   "cxcorr": "0.268406557",
+   "z-compl": "2.156",
+   "p-compl": "0.010514033",
+   "z-heter": "2.772",
+   "p-heter": "0.010339967",
+   "vsfile": "data/RH_Liver_TMTHF_FR3/eMEAEIEDER_15951.png"
+  },
+  {
    "raw": "RH_Liver_TMTHF_FR6",
    "scan": "23585",
    "modification": "Gly/Carbamidomethyl",
@@ -1279,6 +1327,22 @@
    "z-heter": "4.009",
    "p-heter": "0.008373024",
    "vsfile": "data/RH_Liver_TMTHF_FR7/dTNHGPQNHEAHIR_8329.png"
+  },
+  {
+   "raw": "RH_Liver_TMTHF_FR1",
+   "scan": "3956",
+   "modification": "Deoxy",
+   "residue": "S",
+   "protein": "S-adenosylmethionine synthase isoform type-2 OS=Mus musculus GN=Mat2a (Q3THS6)",
+   "pdesc": ">sp|Q3THS6|METK2_MOUSE S-adenosylmethionine synthase isoform type-2 OS=Mus musculus GN=Mat2a PE=1 SV=2",
+   "pepmass": "HIGYDDSS[-15.996421]K",
+   "peptide": "hIGYDDSSk",
+   "cxcorr": "0.305430823",
+   "z-compl": "1.87",
+   "p-compl": "0.152000269",
+   "z-heter": "3.989",
+   "p-heter": "0.003725807",
+   "vsfile": "data/RH_Liver_TMTHF_FR1/hIGYDDSSk_3956.png"
   },
   {
    "raw": "RH_Liver_TMTHF_FR2",
@@ -2369,6 +2433,22 @@
    "vsfile": "data/RH_Liver_TMTHF_FR2/eMESCTSEAER_10447.png"
   },
   {
+   "raw": "RH_Liver_TMTHF_FR2",
+   "scan": "40506",
+   "modification": "Oxidation",
+   "residue": "M",
+   "protein": "Hydroxyacyl-coenzyme A dehydrogenase, mitochondrial OS=Mus musculus GN=Hadh (Q61425)",
+   "pdesc": ">sp|Q61425|HCDH_MOUSE Hydroxyacyl-coenzyme A dehydrogenase, mitochondrial OS=Mus musculus GN=Hadh PE=1 SV=2",
+   "pepmass": "EDIDTAM[15.994856]K",
+   "peptide": "eDIDTAMk",
+   "cxcorr": "0.204794984",
+   "z-compl": "2.307",
+   "p-compl": "0.02919453",
+   "z-heter": "3.31",
+   "p-heter": "0.034467098",
+   "vsfile": "data/RH_Liver_TMTHF_FR2/eDIDTAMk_40506.png"
+  },
+  {
    "raw": "RH_Liver_TMTHF_FR5",
    "scan": "15874",
    "modification": "Oxidation",
@@ -2447,6 +2527,22 @@
    "z-heter": "3.267",
    "p-heter": "0.04522203",
    "vsfile": "data/RH_Liver_TMTHF_FR2/sQIFSTASDNQPTVTIk_103220.png"
+  },
+  {
+   "raw": "RH_Liver_TMTHF_FR6",
+   "scan": "17552",
+   "modification": "Oxidation",
+   "residue": "M",
+   "protein": "Polyadenylate-binding protein 1 OS=Mus musculus GN=Pabpc1 (P29341)",
+   "pdesc": ">sp|P29341|PABP1_MOUSE Polyadenylate-binding protein 1 OS=Mus musculus GN=Pabpc1 PE=1 SV=2",
+   "pepmass": "QAHITNQYM[15.994856]QR",
+   "peptide": "qAHITNQYMQR",
+   "cxcorr": "0.147896798",
+   "z-compl": "1.07",
+   "p-compl": "0.283486772",
+   "z-heter": "3.26",
+   "p-heter": "0.00438601",
+   "vsfile": "data/RH_Liver_TMTHF_FR6/qAHITNQYMQR_17552.png"
   },
   {
    "raw": "RH_Liver_TMTHF_FR1",
@@ -2559,6 +2655,22 @@
    "z-heter": "3.212",
    "p-heter": "0.04056562",
    "vsfile": "data/RH_Liver_TMTHF_FR5/tVAVYSEQDTGQMHR_17131.png"
+  },
+  {
+   "raw": "RH_Liver_TMTHF_FR3",
+   "scan": "22434",
+   "modification": "Oxidation",
+   "residue": "M",
+   "protein": "Tubulin alpha-1B chain OS=Mus musculus GN=Tuba1b (P05213)",
+   "pdesc": ">sp|P05213|TBA1B_MOUSE Tubulin alpha-1B chain OS=Mus musculus GN=Tuba1b PE=1 SV=2",
+   "pepmass": "EDM[15.994856]AAIEK",
+   "peptide": "eDMAAIEk",
+   "cxcorr": "0.11069507",
+   "z-compl": "1.795",
+   "p-compl": "0.161276845",
+   "z-heter": "3.203",
+   "p-heter": "0.026596595",
+   "vsfile": "data/RH_Liver_TMTHF_FR3/eDMAAIEk_22434.png"
   },
   {
    "raw": "RH_Liver_TMTHF_FR6",
@@ -4625,6 +4737,22 @@
    "vsfile": "data/RH_Liver_TMTHF_FR2/iASNAGSIA_58442.png"
   },
   {
+   "raw": "RH_Liver_TMTHF_FR7",
+   "scan": "25109",
+   "modification": "Dioxidation",
+   "residue": "K",
+   "protein": "UDP-glucuronosyltransferase OS=Mus musculus GN=Ugt2b1 (Q8R084)",
+   "pdesc": ">tr|Q8R084|Q8R084_MOUSE UDP-glucuronosyltransferase OS=Mus musculus GN=Ugt2b1 PE=1 SV=1",
+   "pepmass": "K[31.988869]PDTIGSNTR",
+   "peptide": "kPDTIGSNTR",
+   "cxcorr": "0.118528087",
+   "z-compl": "2.429",
+   "p-compl": "0.071786118",
+   "z-heter": "2.527",
+   "p-heter": "0.048232158",
+   "vsfile": "data/RH_Liver_TMTHF_FR7/kPDTIGSNTR_25109.png"
+  },
+  {
    "raw": "RH_Liver_TMTHF_FR2",
    "scan": "17599",
    "modification": "Deamidated",
@@ -5359,6 +5487,22 @@
    "z-heter": "2.34",
    "p-heter": "0.01196083",
    "vsfile": "data/RH_Liver_TMTHF_FR5/eWVESMGGk_58611.png"
+  },
+  {
+   "raw": "RH_Liver_TMTHF_FR3",
+   "scan": "34250",
+   "modification": "Deamidated",
+   "residue": "N",
+   "protein": "Sodium/potassium-transporting ATPase subunit alpha-1 OS=Mus musculus GN=Atp1a1 (Q8VDN2)",
+   "pdesc": ">sp|Q8VDN2|AT1A1_MOUSE Sodium/potassium-transporting ATPase subunit alpha-1 OS=Mus musculus GN=Atp1a1 PE=1 SV=1",
+   "pepmass": "IISAN[0.983771]GCK",
+   "peptide": "iISANGCk",
+   "cxcorr": "0.2728573",
+   "z-compl": "2.043",
+   "p-compl": "0.016188892",
+   "z-heter": "2.333",
+   "p-heter": "0.002859489",
+   "vsfile": "data/RH_Liver_TMTHF_FR3/iISANGCk_34250.png"
   },
   {
    "raw": "RH_Liver_TMTHF_FR2",
@@ -6578,6 +6722,22 @@
   },
   {
    "raw": "RH_Liver_TMTHF_FR6",
+   "scan": "31632",
+   "modification": "Oxidation",
+   "residue": "M",
+   "protein": "Kynurenine 3-monooxygenase OS=Mus musculus GN=Kmo (Q91WN4)",
+   "pdesc": ">sp|Q91WN4|KMO_MOUSE Kynurenine 3-monooxygenase OS=Mus musculus GN=Kmo PE=1 SV=1",
+   "pepmass": "M[15.994856]IHSISGK",
+   "peptide": "mIHSISGk",
+   "cxcorr": "0.204505772",
+   "z-compl": "1.311",
+   "p-compl": "0.116699213",
+   "z-heter": "2.106",
+   "p-heter": "0.026220686",
+   "vsfile": "data/RH_Liver_TMTHF_FR6/mIHSISGk_31632.png"
+  },
+  {
+   "raw": "RH_Liver_TMTHF_FR6",
    "scan": "45682",
    "modification": "Deamidated",
    "residue": "Q",
@@ -6943,6 +7103,22 @@
    "z-heter": "2.039",
    "p-heter": "0.162815864",
    "vsfile": "data/RH_Liver_TMTHF_FR1/hQGVMVGMGQk_3585.png"
+  },
+  {
+   "raw": "RH_Liver_TMTHF_FR4",
+   "scan": "8625",
+   "modification": "Oxidation",
+   "residue": "M",
+   "protein": "14-3-3 protein beta/alpha OS=Mus musculus GN=Ywhab (Q9CQV8)",
+   "pdesc": ">sp|Q9CQV8|1433B_MOUSE 14-3-3 protein beta/alpha OS=Mus musculus GN=Ywhab PE=1 SV=3",
+   "pepmass": "EM[15.994856]QPTHPIR",
+   "peptide": "eMQPTHPIR",
+   "cxcorr": "0.255551662",
+   "z-compl": "1.173",
+   "p-compl": "0.426390043",
+   "z-heter": "2.038",
+   "p-heter": "0.038810037",
+   "vsfile": "data/RH_Liver_TMTHF_FR4/eMQPTHPIR_8625.png"
   },
   {
    "raw": "RH_Liver_TMTHF_FR7",
@@ -7487,6 +7663,22 @@
    "z-heter": "1.929",
    "p-heter": "0.210201383",
    "vsfile": "data/RH_Liver_TMTHF_FR4/nNIHCNTIAPNAGSR_28902.png"
+  },
+  {
+   "raw": "RH_Liver_TMTHF_FR4",
+   "scan": "26534",
+   "modification": "Oxidation",
+   "residue": "Y",
+   "protein": "Protein-glutamine gamma-glutamyltransferase 2 OS=Mus musculus GN=Tgm2 (P21981)",
+   "pdesc": ">sp|P21981|TGM2_MOUSE Protein-glutamine gamma-glutamyltransferase 2 OS=Mus musculus GN=Tgm2 PE=1 SV=4",
+   "pepmass": "Y[15.994856]PEGSPEER",
+   "peptide": "yPEGSPEER",
+   "cxcorr": "0.26919075",
+   "z-compl": "2.094",
+   "p-compl": "0.026264342",
+   "z-heter": "1.928",
+   "p-heter": "0.103282513",
+   "vsfile": "data/RH_Liver_TMTHF_FR4/yPEGSPEER_26534.png"
   },
   {
    "raw": "RH_Liver_TMTHF_FR1",
@@ -11361,6 +11553,22 @@
    "vsfile": "data/RH_Liver_TMTHF_FR3/iEGDPQGVQQAk_33859.png"
   },
   {
+   "raw": "RH_Liver_TMTHF_FR3",
+   "scan": "34138",
+   "modification": "Oxidation",
+   "residue": "M",
+   "protein": "Aldehyde dehydrogenase, cytosolic 1 OS=Mus musculus GN=Aldh1a7 (O35945)",
+   "pdesc": ">sp|O35945|AL1A7_MOUSE Aldehyde dehydrogenase, cytosolic 1 OS=Mus musculus GN=Aldh1a7 PE=1 SV=1",
+   "pepmass": "IADIM[15.994856]ER",
+   "peptide": "iADIMER",
+   "cxcorr": "0.23771261",
+   "z-compl": "2.007",
+   "p-compl": "0.122388923",
+   "z-heter": "1.126",
+   "p-heter": "0.017532884",
+   "vsfile": "data/RH_Liver_TMTHF_FR3/iADIMER_34138.png"
+  },
+  {
    "raw": "RH_Liver_TMTHF_FR2",
    "scan": "20614",
    "modification": "Deamidated",
@@ -13247,6 +13455,22 @@
    "z-heter": "0.317",
    "p-heter": "0.416502249",
    "vsfile": "data/RH_Liver_TMTHF_FR3/aTEPAGAGGAAGQR_4402.png"
+  },
+  {
+   "raw": "RH_Liver_TMTHF_FR7",
+   "scan": "67081",
+   "modification": "Oxidation",
+   "residue": "M",
+   "protein": "78 kDa glucose-regulated protein OS=Mus musculus GN=Hspa5 (P20029)",
+   "pdesc": ">sp|P20029|GRP78_MOUSE 78 kDa glucose-regulated protein OS=Mus musculus GN=Hspa5 PE=1 SV=3",
+   "pepmass": "DAGTIAGINVM[15.994856]R",
+   "peptide": "dAGTIAGINVMR",
+   "cxcorr": "0.277870737",
+   "z-compl": "0.299",
+   "p-compl": "0.007766502",
+   "z-heter": "0.298",
+   "p-heter": "0.252150771",
+   "vsfile": "data/RH_Liver_TMTHF_FR7/dAGTIAGINVMR_67081.png"
   },
   {
    "raw": "RH_Liver_TMTHF_FR1",

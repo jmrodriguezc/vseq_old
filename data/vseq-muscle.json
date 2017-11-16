@@ -1106,6 +1106,22 @@
   },
   {
    "raw": "RH_muscle_TMTHF_FR4",
+   "scan": "41352",
+   "modification": "Dehydrated",
+   "residue": "S",
+   "protein": "L-lactate dehydrogenase B chain OS=Mus musculus GN=Ldhb (P16125)",
+   "pdesc": ">sp|P16125|LDHB_MOUSE L-lactate dehydrogenase B chain OS=Mus musculus GN=Ldhb PE=1 SV=2",
+   "pepmass": "DYS[-18.011267]VTANSK",
+   "peptide": "dYSVTANSk",
+   "cxcorr": "0.197525392",
+   "z-compl": "2.607",
+   "p-compl": "0.046196144",
+   "z-heter": "2.461",
+   "p-heter": "0.032721033",
+   "vsfile": "data/RH_muscle_TMTHF_FR4/dYSVTANSk_41352.png"
+  },
+  {
+   "raw": "RH_muscle_TMTHF_FR4",
    "scan": "97375",
    "modification": "Cation",
    "residue": "E",
@@ -1711,6 +1727,22 @@
    "z-heter": "1.537",
    "p-heter": "0.162722802",
    "vsfile": "data/RH_muscle_TMTHF_FR4/tVITNEYMk_47877.png"
+  },
+  {
+   "raw": "RH_muscle_TMTHF_FR1",
+   "scan": "77021",
+   "modification": "Deamidated",
+   "residue": "N",
+   "protein": "Serine protease inhibitor A3K OS=Mus musculus GN=Serpina3k (P07759)",
+   "pdesc": ">sp|P07759|SPA3K_MOUSE Serine protease inhibitor A3K OS=Mus musculus GN=Serpina3k PE=1 SV=2",
+   "pepmass": "FSIASN[0.983771]YR",
+   "peptide": "fSIASNYR",
+   "cxcorr": "0.250135813",
+   "z-compl": "3.362",
+   "p-compl": "0.043772602",
+   "z-heter": "1.522",
+   "p-heter": "0.311786109",
+   "vsfile": "data/RH_muscle_TMTHF_FR1/fSIASNYR_77021.png"
   },
   {
    "raw": "RH_muscle_TMTHF_FR5",
@@ -2545,6 +2577,22 @@
    "vsfile": "data/RH_muscle_TMTHF_FR3/yGPNEIPAEEGk_84009.png"
   },
   {
+   "raw": "RH_muscle_TMTHF_FR5",
+   "scan": "41574",
+   "modification": "Oxidation",
+   "residue": "M",
+   "protein": "Tubulin alpha-1B chain OS=Mus musculus GN=Tuba1b (P05213)",
+   "pdesc": ">sp|P05213|TBA1B_MOUSE Tubulin alpha-1B chain OS=Mus musculus GN=Tuba1b PE=1 SV=2",
+   "pepmass": "EDM[15.994856]AAIEK",
+   "peptide": "eDMAAIEk",
+   "cxcorr": "0.190628543",
+   "z-compl": "3.155",
+   "p-compl": "0.010620754",
+   "z-heter": "0.924",
+   "p-heter": "0.49579285",
+   "vsfile": "data/RH_muscle_TMTHF_FR5/eDMAAIEk_41574.png"
+  },
+  {
    "raw": "RH_muscle_TMTHF_FR4",
    "scan": "64266",
    "modification": "Oxidation",
@@ -2943,6 +2991,22 @@
    "z-heter": "0.586",
    "p-heter": "0.336443624",
    "vsfile": "data/RH_muscle_TMTHF_FR5/iSDGFNGADIR_89186.png"
+  },
+  {
+   "raw": "RH_muscle_TMTHF_FR6",
+   "scan": "50262",
+   "modification": "Deamidated",
+   "residue": "Q",
+   "protein": "Aldose reductase OS=Mus musculus GN=Akr1b1 (P45376)",
+   "pdesc": ">sp|P45376|ALDR_MOUSE Aldose reductase OS=Mus musculus GN=Akr1b1 PE=1 SV=3",
+   "pepmass": "HIDCAQ[0.983771]VYQNEK",
+   "peptide": "hIDCAQVYQNEk",
+   "cxcorr": "0.218009726",
+   "z-compl": "0.827",
+   "p-compl": "0.038497729",
+   "z-heter": "0.548",
+   "p-heter": "0.270085136",
+   "vsfile": "data/RH_muscle_TMTHF_FR6/hIDCAQVYQNEk_50262.png"
   },
   {
    "raw": "RH_muscle_TMTHF_FR4",

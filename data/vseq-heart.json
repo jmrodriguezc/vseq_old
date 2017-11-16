@@ -769,6 +769,22 @@
    "vsfile": "data/RH_Heart_TMTHF_FR5/hSGDFGADAQGAMSk_39629.png"
   },
   {
+   "raw": "RH_Heart_TMTHF_FR5",
+   "scan": "82594",
+   "modification": "Oxidation",
+   "residue": "D",
+   "protein": "Hemoglobin subunit alpha OS=Mus musculus GN=Hba (P01942)",
+   "pdesc": ">sp|P01942|HBA_MOUSE Hemoglobin subunit alpha OS=Mus musculus GN=Hba PE=1 SV=2",
+   "pepmass": "V[15.994856]DPVNFK",
+   "peptide": "vDPVNFk",
+   "cxcorr": "0.125806204",
+   "z-compl": "2.384",
+   "p-compl": "0.074",
+   "z-heter": "4.717",
+   "p-heter": "0.000851545",
+   "vsfile": "data/RH_Heart_TMTHF_FR5/vDPVNFk_82594.png"
+  },
+  {
    "raw": "RH_Heart_TMTHF_FR1",
    "scan": "15416",
    "modification": "Oxidation",
@@ -1761,6 +1777,22 @@
    "vsfile": "data/RH_Heart_TMTHF_FR6/vAGHPDVVINNAAGNFISPSER_95575.png"
   },
   {
+   "raw": "RH_Heart_TMTHF_FR6",
+   "scan": "94787",
+   "modification": "Dioxidation",
+   "residue": "Y",
+   "protein": "ADP/ATP translocase 1 OS=Mus musculus GN=Slc25a4 (P48962)",
+   "pdesc": ">sp|P48962|ADT1_MOUSE ADP/ATP translocase 1 OS=Mus musculus GN=Slc25a4 PE=1 SV=4",
+   "pepmass": "AAYFGV[31.988869]YDTAK",
+   "peptide": "aAYFGVYDTAk",
+   "cxcorr": "0.265091348",
+   "z-compl": "1.644",
+   "p-compl": "0.314",
+   "z-heter": "3.662",
+   "p-heter": "0.008070107",
+   "vsfile": "data/RH_Heart_TMTHF_FR6/aAYFGVYDTAk_94787.png"
+  },
+  {
    "raw": "RH_Heart_TMTHF_FR3",
    "scan": "60957",
    "modification": "Oxidation",
@@ -2481,6 +2513,22 @@
    "vsfile": "data/RH_Heart_TMTHF_FR2/nEEIDEMIk_59964.png"
   },
   {
+   "raw": "RH_Heart_TMTHF_FR2",
+   "scan": "31642",
+   "modification": "Oxidation",
+   "residue": "W",
+   "protein": "NADH dehydrogenase [ubiquinone] flavoprotein 1, mitochondrial OS=Mus musculus GN=Ndufv1 (Q91YT0)",
+   "pdesc": ">sp|Q91YT0|NDUV1_MOUSE NADH dehydrogenase [ubiquinone] flavoprotein 1, mitochondrial OS=Mus musculus GN=Ndufv1 PE=1 SV=1",
+   "pepmass": "AW[15.994856]QAAS",
+   "peptide": "aWQAAS",
+   "cxcorr": "0.175360747",
+   "z-compl": "2.132",
+   "p-compl": "0.165",
+   "z-heter": "3.372",
+   "p-heter": "0.003335283",
+   "vsfile": "data/RH_Heart_TMTHF_FR2/aWQAAS_31642.png"
+  },
+  {
    "raw": "RH_Heart_TMTHF_FR5",
    "scan": "61934",
    "modification": "Oxidation",
@@ -2607,6 +2655,22 @@
    "z-heter": "3.315",
    "p-heter": "0.008484682",
    "vsfile": "data/RH_Heart_TMTHF_FR2/tNADTDGMVk_26173.png"
+  },
+  {
+   "raw": "RH_Heart_TMTHF_FR3",
+   "scan": "43211",
+   "modification": "Deamidated",
+   "residue": "N",
+   "protein": "Sarcoplasmic/endoplasmic reticulum calcium ATPase 2 OS=Mus musculus GN=Atp2a2 (O55143)",
+   "pdesc": ">sp|O55143|AT2A2_MOUSE Sarcoplasmic/endoplasmic reticulum calcium ATPase 2 OS=Mus musculus GN=Atp2a2 PE=1 SV=2",
+   "pepmass": "AN[0.983771]ACNSVIK",
+   "peptide": "aNACNSVIk",
+   "cxcorr": "0.272428614",
+   "z-compl": "2.366",
+   "p-compl": "0.026",
+   "z-heter": "3.309",
+   "p-heter": "0.000599171",
+   "vsfile": "data/RH_Heart_TMTHF_FR3/aNACNSVIk_43211.png"
   },
   {
    "raw": "RH_Heart_TMTHF_FR4",
@@ -4159,6 +4223,22 @@
    "z-heter": "2.893",
    "p-heter": "0.027940365",
    "vsfile": "data/RH_Heart_TMTHF_FR3/sVQAAMEk_21825.png"
+  },
+  {
+   "raw": "RH_Heart_TMTHF_FR6",
+   "scan": "53343",
+   "modification": "Methyl",
+   "residue": "S",
+   "protein": "Alpha-internexin OS=Mus musculus GN=Ina (P46660)",
+   "pdesc": ">sp|P46660|AINX_MOUSE Alpha-internexin OS=Mus musculus GN=Ina PE=1 SV=3",
+   "pepmass": "AQYES[14.014573]IAAK",
+   "peptide": "aQYESIAAk",
+   "cxcorr": "0.343257242",
+   "z-compl": "3.577",
+   "p-compl": "0.052",
+   "z-heter": "2.89",
+   "p-heter": "0.009006565",
+   "vsfile": "data/RH_Heart_TMTHF_FR6/aQYESIAAk_53343.png"
   },
   {
    "raw": "RH_Heart_TMTHF_FR6",
@@ -11857,6 +11937,22 @@
    "vsfile": "data/RH_Heart_TMTHF_FR4/tDITDYINR_95671.png"
   },
   {
+   "raw": "RH_Heart_TMTHF_FR5",
+   "scan": "80823",
+   "modification": "Oxidation",
+   "residue": "M",
+   "protein": "AFG3-like protein 2 OS=Mus musculus GN=Afg3l2 (Q8JZQ2)",
+   "pdesc": ">sp|Q8JZQ2|AFG32_MOUSE AFG3-like protein 2 OS=Mus musculus GN=Afg3l2 PE=1 SV=1",
+   "pepmass": "GMG[15.994856]GIFSVGETTAK",
+   "peptide": "gMGGIFSVGETTAk",
+   "cxcorr": "0.126486233",
+   "z-compl": "0.362",
+   "p-compl": "0.643",
+   "z-heter": "1.276",
+   "p-heter": "0.037526354",
+   "vsfile": "data/RH_Heart_TMTHF_FR5/gMGGIFSVGETTAk_80823.png"
+  },
+  {
    "raw": "RH_Heart_TMTHF_FR3",
    "scan": "72662",
    "modification": "Oxidation",
@@ -13329,6 +13425,22 @@
    "vsfile": "data/RH_Heart_TMTHF_FR4/iSISGEYNIk_100560.png"
   },
   {
+   "raw": "RH_Heart_TMTHF_FR4",
+   "scan": "41886",
+   "modification": "Dehydrated",
+   "residue": "S",
+   "protein": "Actin, gamma-enteric smooth muscle OS=Mus musculus GN=Actg2 (P63268)",
+   "pdesc": ">sp|P63268|ACTH_MOUSE Actin, gamma-enteric smooth muscle OS=Mus musculus GN=Actg2 PE=1 SV=1",
+   "pepmass": "DS[-18.011267]YVGDEAQSK",
+   "peptide": "dSYVGDEAQSk",
+   "cxcorr": "0.324212974",
+   "z-compl": "1.091",
+   "p-compl": "0.277",
+   "z-heter": "1.079",
+   "p-heter": "0.030223826",
+   "vsfile": "data/RH_Heart_TMTHF_FR4/dSYVGDEAQSk_41886.png"
+  },
+  {
    "raw": "RH_Heart_TMTHF_FR6",
    "scan": "75012",
    "modification": "Dioxidation",
@@ -14783,6 +14895,22 @@
    "z-heter": "0.38",
    "p-heter": "0.046425153",
    "vsfile": "data/RH_Heart_TMTHF_FR1/vVHAFDMEDIGDk_67493.png"
+  },
+  {
+   "raw": "RH_Heart_TMTHF_FR3",
+   "scan": "70996",
+   "modification": "Deamidated",
+   "residue": "Q",
+   "protein": "NAD(P) transhydrogenase, mitochondrial OS=Mus musculus GN=Nnt (Q61941)",
+   "pdesc": ">sp|Q61941|NNTM_MOUSE NAD(P) transhydrogenase, mitochondrial OS=Mus musculus GN=Nnt PE=1 SV=2",
+   "pepmass": "Q[0.983771]ITVGVPK",
+   "peptide": "qITVGVPk",
+   "cxcorr": "0.20722965",
+   "z-compl": "0.909",
+   "p-compl": "0.022",
+   "z-heter": "0.363",
+   "p-heter": "0.101831928",
+   "vsfile": "data/RH_Heart_TMTHF_FR3/qITVGVPk_70996.png"
   },
   {
    "raw": "RH_Heart_TMTHF_FR6",
