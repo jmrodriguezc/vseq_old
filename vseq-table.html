@@ -342,26 +342,28 @@ function createDataTable(i, dname, dfile) {
             if ( param !== undefined && param !== null ) {
                 this.api().search(param).draw();
             }
-            this.api().columns().every( function ( index ) {
-                // Jump the first column (checkbox) and the last column (img link)
-                if ( index > 0 && index < table.columns().count()-1 ) {
-                    var column = this;             
-                    var select = $('<select><option value=""></option></select>')
-                            .appendTo( $(column.footer()).empty() )
-                            // begin: jmrc > filter in header
-                            // .appendTo( $('thead.search th.'+index).empty() )
-                            // end: jmrc > filter in header
-                            .on( 'change', function () {
-                                var val = $.fn.dataTable.util.escapeRegex(
-                                        $(this).val()
-                                );
-                                column.search( val ? '^'+val+'$' : '', true, false ).draw();
-                            } );
-                    column.data().unique().sort().each( function ( d, j ) {
-                        select.append( '<option value="'+d+'">'+d+'</option>' )
-                    } );
-                }
-            } );
+            else {
+                this.api().columns().every( function ( index ) {
+                    // Jump the first column (checkbox) and the last column (img link)
+                    if ( index > 0 && index < table.columns().count()-1 ) {
+                        var column = this;             
+                        var select = $('<select><option value=""></option></select>')
+                                .appendTo( $(column.footer()).empty() )
+                                // begin: jmrc > filter in header
+                                // .appendTo( $('thead.search th.'+index).empty() )
+                                // end: jmrc > filter in header
+                                .on( 'change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                            $(this).val()
+                                    );
+                                    column.search( val ? '^'+val+'$' : '', true, false ).draw();
+                                } );
+                        column.data().unique().sort().each( function ( d, j ) {
+                            select.append( '<option value="'+d+'">'+d+'</option>' )
+                        } );
+                    }
+                } );
+            }
         }
     } );
     // selected rows
