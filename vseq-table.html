@@ -103,6 +103,11 @@ var globalURL = location.origin + location.pathname;
 globalURL = globalURL.substring(0, globalURL.lastIndexOf("/") + 1);
 var globalURLdata = globalURL + 'data';
 
+// get parameter
+function getParam() {
+    return window.location.href.slice(window.location.href.indexOf('?') + 1).split('=')[1];
+}
+
 // init document
 $(document).ready(function() {
     $.ajax({
@@ -170,7 +175,7 @@ function createDataTable(i, dname, dfile) {
             '<th>Protein</th>'+
             '<th>Peptide</th>'+
             '<th>Xcor (corrected)</th>'+
-            '<th>Vseq img</th>'+
+            '<th>Vseq</th>'+
             '</tr>'+
     '</thead>'+
     // begin: jmrc > filter in header
@@ -223,12 +228,12 @@ function createDataTable(i, dname, dfile) {
             //     return p;
             //     }, width: "200px" },
             { data: "pepmass" },                         // peptide with mass and modification
-            { data: "cxcorr" },                         // peptide with mass and modification
+            { data: "cxcorr", width: "80px" },           // Corrected Xcorr
             { data: function ( row, type, val, meta ) {  // vseq img
                 var img = row.vsfile;
                 var href = globalURLdata + '/' + + img;
                 return '<button class="vseqimg" data-vseq-hrefimg="'+href+'">Click!</button>';
-                }, width: "85px" }
+                }, width: "40px" }
         ],
         dom: 'Bfrtip',
         order: [[ 1, 'asc' ]],
@@ -332,26 +337,33 @@ function createDataTable(i, dname, dfile) {
             className: 'select-checkbox'
         }],
         initComplete: function () {
-            this.api().columns().every( function ( index ) {
-                // Jump the first column (checkbox) and the last column (img link)
-                if ( index > 0 && index < table.columns().count()-1 ) {
-                    var column = this;             
-                    var select = $('<select><option value=""></option></select>')
-                            .appendTo( $(column.footer()).empty() )
-                            // begin: jmrc > filter in header
-                            // .appendTo( $('thead.search th.'+index).empty() )
-                            // end: jmrc > filter in header
-                            .on( 'change', function () {
-                                var val = $.fn.dataTable.util.escapeRegex(
-                                        $(this).val()
-                                );
-                                column.search( val ? '^'+val+'$' : '', true, false ).draw();
-                            } );
-                    column.data().unique().sort().each( function ( d, j ) {
-                        select.append( '<option value="'+d+'">'+d+'</option>' )
-                    } );
-                }
-            } );
+            // print the table from URL query
+            var param = getParam();
+            if ( param !== undefined && param !== null ) {
+                this.api().search(param).draw();
+            }
+            else {
+                this.api().columns().every( function ( index ) {
+                    // Jump the first column (checkbox) and the last column (img link)
+                    if ( index > 0 && index < table.columns().count()-1 ) {
+                        var column = this;             
+                        var select = $('<select><option value=""></option></select>')
+                                .appendTo( $(column.footer()).empty() )
+                                // begin: jmrc > filter in header
+                                // .appendTo( $('thead.search th.'+index).empty() )
+                                // end: jmrc > filter in header
+                                .on( 'change', function () {
+                                    var val = $.fn.dataTable.util.escapeRegex(
+                                            $(this).val()
+                                    );
+                                    column.search( val ? '^'+val+'$' : '', true, false ).draw();
+                                } );
+                        column.data().unique().sort().each( function ( d, j ) {
+                            select.append( '<option value="'+d+'">'+d+'</option>' )
+                        } );
+                    }
+                } );
+            }
         }
     } );
     // selected rows
