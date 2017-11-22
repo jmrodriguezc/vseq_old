@@ -346,9 +346,11 @@ function createDataTable(i, dname, dfile) {
                                 .appendTo( $('thead.search th.'+index).empty() )
                                 // end: jmrc > filter in header
                                 .on( 'change', function () {
+                                    console.log("change");
                                     var val = $.fn.dataTable.util.escapeRegex(
                                             $(this).val()
                                     );
+                                    console.log(val);
                                     column.search( val ? '^'+val+'$' : '', true, false ).draw();
                                 } );
                         column.data().unique().sort().each( function ( d, j ) {
@@ -359,6 +361,8 @@ function createDataTable(i, dname, dfile) {
             }
         }
     } );
+    // order (again!!)
+    table.order( [ 1, 'asc' ], [ 2, 'desc' ] ).draw();
     // selected rows
     table.on('click', 'thead tr th.select-checkbox', function() {
         if ($('th.select-checkbox').hasClass('selected')) {
