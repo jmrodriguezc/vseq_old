@@ -366,7 +366,11 @@ function createDataTable(i, dname, dfile) {
 
     // filter search
     table.on('change', 'thead.search tr th select', function() {
-        table.column( $(this).parent().index() ).search( this.value ).draw();
+        var val = $.fn.dataTable.util.escapeRegex(
+                $(this).val()
+        );
+        // table.column( $(this).parent().index() ).search( this.value ).draw();
+        table.column( $(this).parent().index() ).search( val ? '^'+val+'$' : '', true, false ).draw();
     });
     
     // update select filters
