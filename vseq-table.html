@@ -76,14 +76,20 @@
         width: 100%;
     }
     /* begin: jmrc > filter in header */
-    /* table.dataTable thead tr th select {
+    table.dataTable thead tr th select {
         width: 100%;
     }
     table.dataTable thead.search th{
         padding: 5px 9px;
         border-bottom: 0px;
-    }  */
+    } 
     /* end: jmrc > filter in header */
+    #myModal .modal-title {
+        text-align: center;
+    }
+    #myModal button.close span {
+        font-size: xx-large;
+    }
 </style>
 
     <script type="text/javascript" language="javascript" src="js/jquery-1.12.4.min.js"></script>
@@ -161,13 +167,6 @@ function createDataTable(i, dname, dfile) {
     '<thead>'+
             '<tr>'+
             '<th class="select-checkbox"></th>'+
-            // '<th>Raw <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+  
-            // '<th>Scan <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+  
-            // '<th>Modification <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
-            // '<th>Residue <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
-            // '<th>Protein <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
-            // '<th>Peptide <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
-            // '<th>Vseq img <span data-toggle="tooltip" title="Info!" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></th>'+
             '<th>Raw</th>'+  
             '<th>Scan</th>'+  
             '<th>Modification</th>'+
@@ -179,19 +178,19 @@ function createDataTable(i, dname, dfile) {
             '</tr>'+
     '</thead>'+
     // begin: jmrc > filter in header
-    // '<thead class="search">'+
-    //         '<tr>'+
-    //         '<th></th>'+
-    //         '<th class="1"></th>'+
-    //         '<th class="2"></th>'+
-    //         '<th class="3"></th>'+
-    //         '<th class="4"></th>'+
-    //         '<th class="5"></th>'+
-    //         '<th class="6"></th>'+
-    //         '<th class="7"></th>'+
-    //         '<th></th>'+
-    //         '</tr>'+
-    // '</thead>'+
+    '<thead class="search">'+
+            '<tr>'+
+            '<th></th>'+
+            '<th class="1"></th>'+
+            '<th class="2"></th>'+
+            '<th class="3"></th>'+
+            '<th class="4"></th>'+
+            '<th class="5"></th>'+
+            '<th class="6"></th>'+
+            '<th class="7"></th>'+
+            '<th></th>'+
+            '</tr>'+
+    '</thead>'+
     // end: jmrc > filter in header
     '<tfoot>'+
             '<tr>'+
@@ -221,12 +220,6 @@ function createDataTable(i, dname, dfile) {
             { data: "modification", width: "150px"},    // modfication
             { data: "residue", width: "60px"},          // residue
             { data: "protein", width: "210px"},         // protein description
-            // { data: function ( row, type, val, meta ) {
-            //     var p = row.protein;
-            //     var r = /^\>[^\s]*\s*/; p = p.replace(r,'');
-            //     var r = /\s*PE=[^\s]*\s*SV=\d*\s*/; p = p.replace(r,'');
-            //     return p;
-            //     }, width: "200px" },
             { data: "pepmass" },                         // peptide with mass and modification
             { data: "cxcorr", width: "80px" },           // Corrected Xcorr
             { data: function ( row, type, val, meta ) {  // vseq img
@@ -263,7 +256,7 @@ function createDataTable(i, dname, dfile) {
                                 return '=HYPERLINK("'+u+'", "'+d[1]+'")';
                             }
                             else {
-                                return '=HYPERLINK("'+u+'", "Vseq img")'
+                                return '=HYPERLINK("'+u+'", "Vseq")'
                             }
                         }
                         else { return inner }
@@ -300,7 +293,7 @@ function createDataTable(i, dname, dfile) {
                                 return '<a target="_blank" href="'+u+'">'+d[1]+'</a>';
                             }
                             else {
-                                return '<a target="_blank" href="'+u+'">Vseq img</a>';
+                                return '<a target="_blank" href="'+u+'">Vseq</a>';
                             }
                         }
                         else { return inner }
@@ -348,9 +341,9 @@ function createDataTable(i, dname, dfile) {
                     if ( index > 0 && index < table.columns().count()-1 ) {
                         var column = this;             
                         var select = $('<select><option value=""></option></select>')
-                                .appendTo( $(column.footer()).empty() )
+                                // .appendTo( $(column.footer()).empty() )
                                 // begin: jmrc > filter in header
-                                // .appendTo( $('thead.search th.'+index).empty() )
+                                .appendTo( $('thead.search th.'+index).empty() )
                                 // end: jmrc > filter in header
                                 .on( 'change', function () {
                                     var val = $.fn.dataTable.util.escapeRegex(
@@ -404,9 +397,9 @@ function createDataTable(i, dname, dfile) {
     // update select filters
     table.on('draw', function () {
         table.columns().indexes().each( function ( idx ) {
-            var select = $(table.column( idx ).footer()).find('select');
+            // var select = $(table.column( idx ).footer()).find('select');
             // begin: jmrc > filter in header
-            // var select = $('thead.search th.'+idx+' select');
+            var select = $('thead.search th.'+idx+' select');
             // end: jmrc > filter in header
             if ( select.val() === '' ) {
                 select.empty().append('<option value=""/>');
@@ -452,12 +445,14 @@ function createDataTable(i, dname, dfile) {
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Vseq image</h4>
+                    <h2 class="modal-title" id="myModalLabel">Vseq</h2>
                 </div>
                 <div class="modal-body">
                     <img src="" class="imagepreview" style="width: 100%;">
                 </div>
-                <div class="modal-footer"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
