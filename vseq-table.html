@@ -213,6 +213,7 @@ function createDataTable(i, dname, dfile) {
         processing: true,
         autoWidth: false,
         mark: true,
+        cache: false,
         columns: [
             { data: null, width: "1px" },               // checkbox
             { data: "raw", width: "170px" },            // raw
@@ -345,14 +346,15 @@ function createDataTable(i, dname, dfile) {
                                 // begin: jmrc > filter in header
                                 .appendTo( $('thead.search th.'+index).empty() )
                                 // end: jmrc > filter in header
-                                .on( 'change', function () {
-                                    console.log("change");
-                                    var val = $.fn.dataTable.util.escapeRegex(
-                                            $(this).val()
-                                    );
-                                    console.log(val);
-                                    column.search( val ? '^'+val+'$' : '', true, false ).draw();
-                                } );
+                                // .on( 'change', function () {
+                                //     console.log("change");
+                                //     var val = $.fn.dataTable.util.escapeRegex(
+                                //             $(this).val()
+                                //     );
+                                //     console.log(val);
+                                //     column.search( val ? '^'+val+'$' : '', true, false ).draw();
+                                //     console.log(column.search( val ? '^'+val+'$' : '', true, false ));
+                                // } );
                         column.data().unique().sort().each( function ( d, j ) {
                             select.append( '<option value="'+d+'">'+d+'</option>' )
                         } );
@@ -361,8 +363,28 @@ function createDataTable(i, dname, dfile) {
             }
         }
     } );
-    // order (again!!)
-    table.order( [ 1, 'asc' ], [ 2, 'desc' ] ).draw();
+
+    // filter search
+    table.on('change', 'thead.search tr th select', function() {
+        table.column( $(this).parent().index() ).search( this.value ).draw();
+    });
+    
+    // update select filters
+    table.on('draw', function () {
+        table.columns().indexes().each( function ( idx ) {
+            // var select = $(table.column( idx ).footer()).find('select');
+            // begin: jmrc > filter in header
+            var select = $('thead.search th.'+idx+' select');
+            // end: jmrc > filter in header
+            if ( select.val() === '' ) {
+                select.empty().append('<option value=""/>');
+                table.column(idx, {search:'applied'}).data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' );
+                } );
+            }
+        } );
+    } );
+    
     // selected rows
     table.on('click', 'thead tr th.select-checkbox', function() {
         if ($('th.select-checkbox').hasClass('selected')) {
@@ -396,22 +418,6 @@ function createDataTable(i, dname, dfile) {
         var mymodal = $('#myModal');
         mymodal.find('.modal-body img.imagepreview').attr('src', u);
         mymodal.modal('show');
-    } );
-
-    // update select filters
-    table.on('draw', function () {
-        table.columns().indexes().each( function ( idx ) {
-            // var select = $(table.column( idx ).footer()).find('select');
-            // begin: jmrc > filter in header
-            var select = $('thead.search th.'+idx+' select');
-            // end: jmrc > filter in header
-            if ( select.val() === '' ) {
-                select.empty().append('<option value=""/>');
-                table.column(idx, {search:'applied'}).data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' );
-                } );
-            }
-        } );
     } );
 
 } // end createDataTable-function
