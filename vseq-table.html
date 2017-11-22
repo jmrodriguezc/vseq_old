@@ -365,8 +365,8 @@ function createDataTable(i, dname, dfile) {
     } );
 
     // filter search
-    $('table thead.search').on( 'change', 'th select',function () {
-    // table.on('change', 'thead.search tr th select', function() {
+    // $('table thead.search').on( 'change', 'th select',function () {
+    table.on('change', 'thead.search tr th select', function() {
         var val = $.fn.dataTable.util.escapeRegex(
                 $(this).val()
         );
